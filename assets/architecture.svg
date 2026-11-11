@@ -1,49 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 150" width="800" height="150">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 400" width="100%" role="img" aria-labelledby="title desc">
+  <title id="title">matchnext · zero-RegExp glob matching pipeline</title>
+  <desc id="desc">Glob patterns and inputs are normalized, brace-expanded, lexed into tokens, and matched via memoized chart descent with step-budget guardrails</desc>
   <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0b1020"/><stop offset="1" stop-color="#111827"/></linearGradient>
     <style>
-      .box { fill: #2563eb; stroke: #1d4ed8; stroke-width: 2; rx: 6; ry: 6; }
-      .box2 { fill: #1e40af; stroke: #1e3a8a; stroke-width: 2; rx: 6; ry: 6; }
-      .text { fill: white; font-family: "SF Mono", Monaco, monospace; font-size: 12; text-anchor: middle; }
-      .text-dark { fill: #1e293b; font-family: "SF Mono", Monaco, monospace; font-size: 12; text-anchor: middle; }
-      .arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
-      .arrowhead { fill: #64748b; }
+      text{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;fill:#e5e7eb}
+      .title{font-size:21px;font-weight:700;fill:#f8fafc}
+      .sub{font-size:13px;fill:#9ca3af}
+      .head{font-size:15px;font-weight:650;fill:#f8fafc}
+      .body{font-size:12px;fill:#cbd5e1}
+      .code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#7dd3fc}
     </style>
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" class="arrowhead"/>
-    </marker>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
   </defs>
+  <rect width="1180" height="400" rx="18" fill="url(#bg)" stroke="#334155"/>
+  <text x="32" y="43" class="title">matchnext · zero-RegExp glob matching pipeline</text>
+  <g fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"><path d="M234 187h22"/><path d="M464 187h22"/><path d="M694 187h22"/><path d="M924 187h22"/></g>
+  <text x="32" y="68" class="sub">Glob patterns and inputs are normalized, brace-expanded, lexed into tokens, and matched via memoized chart descent with step-budget guardrails</text>
 
-  <!-- Input -->
-  <rect x="50" y="50" width="120" height="50" class="box"/>
-  <text x="110" y="78" class="text">input string</text>
+  <rect x="30" y="112" width="200" height="150" rx="12" fill="#172554" stroke="#60a5fa"/>
+  <text x="48" y="144" class="head">Input &amp; Glob</text>
+  <text x="48" y="174" class="body">path: "src/foo.test.ts"</text>
+  <text x="48" y="197" class="body">glob: "**/*.test.ts"</text>
+  <text x="48" y="220" class="body">opts: dot · nocase · sep</text>
+  <text x="48" y="243" class="code">input · patterns[]</text>
 
-  <!-- Normalize -->
-  <rect x="220" y="50" width="120" height="50" class="box2"/>
-  <text x="280" y="78" class="text">normalize</text>
-  <path d="M 170 75 L 220 75" class="arrow"/>
+  <rect x="260" y="112" width="200" height="150" rx="12" fill="#312e81" stroke="#a78bfa"/>
+  <text x="278" y="144" class="head">Normalize &amp; Braces</text>
+  <text x="278" y="174" class="body">Strip leading ./ prefix</text>
+  <text x="278" y="197" class="body">{a,b} → [a, b]</text>
+  <text x="278" y="220" class="body">Ranges: {1..10} · {a..z}</text>
+  <text x="278" y="243" class="code">pure string surgery</text>
 
-  <!-- Expand Braces -->
-  <rect x="390" y="50" width="120" height="50" class="box2"/>
-  <text x="450" y="78" class="text">expand braces</text>
-  <path d="M 340 75 L 390 75" class="arrow"/>
+  <rect x="490" y="112" width="200" height="150" rx="12" fill="#064e3b" stroke="#34d399"/>
+  <text x="508" y="144" class="head">Zero-RegExp Lexer</text>
+  <text x="508" y="174" class="body">Code point scanner</text>
+  <text x="508" y="197" class="body">star · globstar · qmark</text>
+  <text x="508" y="220" class="body">class [...] · extgroup !()</text>
+  <text x="508" y="243" class="code">Token[] (no RegExp)</text>
 
-  <!-- Lex -->
-  <rect x="560" y="50" width="120" height="50" class="box2"/>
-  <text x="620" y="78" class="text">lex</text>
-  <path d="M 510 75 L 560 75" class="arrow"/>
+  <rect x="720" y="112" width="200" height="150" rx="12" fill="#713f12" stroke="#fbbf24"/>
+  <text x="738" y="144" class="head">Chart Matcher</text>
+  <text x="738" y="174" class="body">Memoized recursive descent</text>
+  <text x="738" y="197" class="body">Dynamic programming state</text>
+  <text x="738" y="220" class="body">maxSteps budget cap</text>
+  <text x="738" y="243" class="code">O(n × m) linear bound</text>
 
-  <!-- Match (chart parser) -->
-  <rect x="730" y="50" width="120" height="50" class="box"/>
-  <text x="790" y="78" class="text">chart matcher</text>
-  <path d="M 680 75 L 730 75" class="arrow"/>
+  <rect x="950" y="112" width="200" height="150" rx="12" fill="#4c1d95" stroke="#c4b5fd"/>
+  <text x="968" y="144" class="head">Decision</text>
+  <text x="968" y="174" class="body">isMatch() → boolean</text>
+  <text x="968" y="197" class="body">ReDoS-proof (&lt; 1 ms)</text>
+  <text x="968" y="220" class="body">match() substring slice</text>
+  <text x="968" y="243" class="code">safe boolean result</text>
 
-  <!-- Output -->
-  <rect x="850" y="50" width="60" height="50" class="box2"/>
-  <text x="880" y="78" class="text">boolean</text>
-  <path d="M 850 75 L 850 75" class="arrow"/>
-  <path d="M 910 75 L 910 75" stroke="none"/>
-
-  <!-- Budget annotation -->
-  <text x="790" y="30" class="text-dark" font-size="10">step budget</text>
-  <line x1="730" y1="40" x2="850" y2="40" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="30" y="300" width="1120" height="70" rx="10" fill="#111827" stroke="#334155"/>
+  <text x="50" y="326" class="head">Zero-RegExp Security &amp; Upstream Compatibility</text>
+  <text x="50" y="348" class="body">Eliminates CVE-2026-112366 (CVSS 8.7 High unpatched in picomatch@4.0.7) · +(*a)*b on 30 chars: &lt; 1 ms vs ~4.9 s catastrophic backtrack</text>
+  <text x="50" y="368" class="body">Pinned to picomatch@4.0.7 test corpus · Zero runtime dependencies · UTF-16 code point traversal · Node &gt;=20 and Bun</text>
 </svg>
