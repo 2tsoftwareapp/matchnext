@@ -1,0 +1,23 @@
+{
+  "upstream": {
+    "repo": "micromatch/picomatch",
+    "ref": "v4.0.7 (npm latest tag)",
+    "commit": "9fab7bf61913ea334c4203ed321c426cfde44a42",
+    "commit_date": "2026-08-27T22:07:51+03:00",
+    "snapshot_copied": "test/*.js (36 test files) + LICENSE (MIT)",
+    "snapshot_path": "research/upstream-snapshot/",
+    "note": "Fixture files copied verbatim for TDD baseline; LICENSE preserved for attribution."
+  },
+  "measured_2026-11-11": {
+    "npm_weekly_downloads": 697861516,
+    "upstream_test_count": 1998,
+    "upstream_test_runtime_ms": 402,
+    "redos_poc": {
+      "cve": "CVE-2026-112366 (CVSS 4.0 8.7 HIGH, unpatched in 4.0.7)",
+      "poc_pattern": "+(*a)*b",
+      "input_len_25_ms": 152,
+      "input_len_28_ms": 9584,
+      "input_len_30_ms": 4940
+    }
+  }
+}
