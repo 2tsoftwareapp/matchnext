@@ -527,18 +527,13 @@ class Matcher {
           continue;
         }
         case "star": {
-          // try longest-first is unnecessary; memoized DFS over end positions
-          // star cannot cross separator; dot rule at segment start
+          // star cannot cross separator; dot rule: at segment start, cannot match
+          // leading dot (even empty match would allow the rest to consume the dot)
           const startsSegment = this.atSegmentStart(tokens, ti);
+          if (startsSegment && !this.canStartSegment(ip)) return false;
           for (let end = ip; end <= this.input.length; end++) {
-            // segment boundary check for [ip..end)
             if (this.spansSeparator(ip, end)) break;
-            if (startsSegment && !this.canStartSegment(ip) && ip < end) break;
             if (this.match(tokens, ti + 1, end)) return true;
-            if (startsSegment && !this.canStartSegment(ip) && end === ip) {
-              // even zero-length is fine only if dot allowed... zero-length star
-              // matches empty; allowed regardless (matches nothing)
-            }
           }
           return false;
         }
@@ -698,6 +693,14 @@ class Matcher {
 
 /* ---------------------------------- API ----------------------------------- */
 
+function normalizePattern(pattern: string): string {
+  // picomatch strips leading "./" for compatibility (see lib/utils.js:removePrefix)
+  if (pattern.startsWith("./")) {
+    return pattern.slice(2);
+  }
+  return pattern;
+}
+
 export function isMatch(input: string, patterns: string | string[], options?: MatchOptions): boolean {
   if (typeof patterns === "string") patterns = [patterns];
   if (!Array.isArray(patterns)) {
@@ -705,7 +708,8 @@ export function isMatch(input: string, patterns: string | string[], options?: Ma
   }
   for (const p of patterns) {
     assertPattern(p);
-    const expanded = expandBraces(p, options ?? {});
+    const normalized = normalizePattern(p);
+    const expanded = expandBraces(normalized, options ?? {});
     for (const ex of expanded) {
       const tokens = lex(ex, options ?? {});
       const cps = Array.from(input).map((c) => c.codePointAt(0)!);

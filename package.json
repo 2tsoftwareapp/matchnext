@@ -3,9 +3,9 @@
   "version": "0.0.0-m1",
   "private": true,
   "type": "module",
-  "description": "Glob matcher and ReDoS-hardened rewrite of picomatch (milestone 1 development build)",
+  "description": "Glob matcher and ReDoS-hardened rewrite of picomatch — zero-RegExp engine, step-budgeted, 100 % fixture-compatible",
   "scripts": {
-    "test": "bun test test",
+    "test": "bun test ./test",
     "typecheck": "tsc --noEmit"
   },
   "engines": {
