@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 150" width="800" height="150">
+  <defs>
+    <style>
+      .box { fill: #2563eb; stroke: #1d4ed8; stroke-width: 2; rx: 6; ry: 6; }
+      .box2 { fill: #1e40af; stroke: #1e3a8a; stroke-width: 2; rx: 6; ry: 6; }
+      .text { fill: white; font-family: "SF Mono", Monaco, monospace; font-size: 12; text-anchor: middle; }
+      .text-dark { fill: #1e293b; font-family: "SF Mono", Monaco, monospace; font-size: 12; text-anchor: middle; }
+      .arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .arrowhead { fill: #64748b; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" class="arrowhead"/>
+    </marker>
+  </defs>
+
+  <!-- Input -->
+  <rect x="50" y="50" width="120" height="50" class="box"/>
+  <text x="110" y="78" class="text">input string</text>
+
+  <!-- Normalize -->
+  <rect x="220" y="50" width="120" height="50" class="box2"/>
+  <text x="280" y="78" class="text">normalize</text>
+  <path d="M 170 75 L 220 75" class="arrow"/>
+
+  <!-- Expand Braces -->
+  <rect x="390" y="50" width="120" height="50" class="box2"/>
+  <text x="450" y="78" class="text">expand braces</text>
+  <path d="M 340 75 L 390 75" class="arrow"/>
+
+  <!-- Lex -->
+  <rect x="560" y="50" width="120" height="50" class="box2"/>
+  <text x="620" y="78" class="text">lex</text>
+  <path d="M 510 75 L 560 75" class="arrow"/>
+
+  <!-- Match (chart parser) -->
+  <rect x="730" y="50" width="120" height="50" class="box"/>
+  <text x="790" y="78" class="text">chart matcher</text>
+  <path d="M 680 75 L 730 75" class="arrow"/>
+
+  <!-- Output -->
+  <rect x="850" y="50" width="60" height="50" class="box2"/>
+  <text x="880" y="78" class="text">boolean</text>
+  <path d="M 850 75 L 850 75" class="arrow"/>
+  <path d="M 910 75 L 910 75" stroke="none"/>
+
+  <!-- Budget annotation -->
+  <text x="790" y="30" class="text-dark" font-size="10">step budget</text>
+  <line x1="730" y1="40" x2="850" y2="40" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>
